@@ -6,6 +6,7 @@ import static game2048logic.MatrixUtils.rotateRight;
 
 /**
  * @author  Josh Hug
+ * @see proj0-sp21-finished
  */
 public class GameLogic {
     /** Moves the given tile up as far as possible, subject to the minR constraint.
