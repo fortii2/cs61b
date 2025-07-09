@@ -1,5 +1,6 @@
+package disjointSets;
+
 import com.google.common.truth.Truth;
-import disjointSets.QuickFindDS;
 import org.junit.jupiter.api.Test;
 
 public class QuickFindDSTest {

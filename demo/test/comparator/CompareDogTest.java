@@ -1,4 +1,5 @@
-import comparator.Dog;
+package comparator;
+
 import org.junit.Test;
 
 import static com.google.common.truth.Truth.*;

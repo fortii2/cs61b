@@ -1,5 +1,6 @@
+package comparator;
+
 import com.google.common.truth.Truth;
-import comparator.Cat;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
