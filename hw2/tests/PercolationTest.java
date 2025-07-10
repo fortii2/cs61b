@@ -1,3 +1,4 @@
+import com.google.common.truth.Truth;
 import org.junit.jupiter.api.Test;
 
 import static com.google.common.truth.Truth.assertThat;
@@ -13,7 +14,7 @@ public class PercolationTest {
      * (1) OPEN: isOpen() returns true, isFull() returns false
      * <p>
      * (2) INVALID: isOpen() returns false, isFull() returns true
-     *              (This should not happen! Only open cells should be full.)
+     * (This should not happen! Only open cells should be full.)
      * <p>
      * (3) FULL: isOpen() returns true, isFull() returns true
      * <p>
@@ -78,11 +79,107 @@ public class PercolationTest {
         assertThat(p.percolates()).isTrue();
     }
 
-    // TODO: Using the given tests above as a template,
-    //       write some more tests and delete the fail() line
     @Test
-    public void yourFirstTestHere() {
-        fail("Did you write your own tests?");
+    public void xyTo1DTest() {
+        Percolation percolation = new Percolation(4);
+        Truth.assertThat(percolation.xyTo1D(0, 0)).isEqualTo(0);
+        Truth.assertThat(percolation.xyTo1D(0, 1)).isEqualTo(1);
+        Truth.assertThat(percolation.xyTo1D(0, 2)).isEqualTo(2);
+        Truth.assertThat(percolation.xyTo1D(0, 3)).isEqualTo(3);
+
+        Truth.assertThat(percolation.xyTo1D(1, 0)).isEqualTo(4);
+        Truth.assertThat(percolation.xyTo1D(1, 1)).isEqualTo(5);
+        Truth.assertThat(percolation.xyTo1D(1, 2)).isEqualTo(6);
+        Truth.assertThat(percolation.xyTo1D(1, 3)).isEqualTo(7);
+
+        Truth.assertThat(percolation.xyTo1D(2, 0)).isEqualTo(8);
+        Truth.assertThat(percolation.xyTo1D(2, 1)).isEqualTo(9);
+        Truth.assertThat(percolation.xyTo1D(2, 2)).isEqualTo(10);
+        Truth.assertThat(percolation.xyTo1D(2, 3)).isEqualTo(11);
+
+        Truth.assertThat(percolation.xyTo1D(3, 0)).isEqualTo(12);
+        Truth.assertThat(percolation.xyTo1D(3, 1)).isEqualTo(13);
+        Truth.assertThat(percolation.xyTo1D(3, 2)).isEqualTo(14);
+        Truth.assertThat(percolation.xyTo1D(3, 3)).isEqualTo(15);
     }
 
+    @Test
+    public void openTest() {
+        Percolation percolation = new Percolation(3);
+        Truth.assertThat(percolation.isOpen(0, 0)).isFalse();
+        Truth.assertThat(percolation.isOpen(1, 1)).isFalse();
+        percolation.open(0, 0);
+        Truth.assertThat(percolation.isOpen(0, 0)).isTrue();
+        Truth.assertThat(percolation.isOpen(1, 1)).isFalse();
+
+        percolation.open(1, 1);
+        Truth.assertThat(percolation.isOpen(1, 1)).isTrue();
+    }
+
+    /**
+     * see by visualizer
+     */
+    @Test
+    public void unionAroundTest() {
+        Percolation percolation = new Percolation(3);
+        percolation.open(0, 0);
+        percolation.open(1, 1);
+        percolation.open(0, 1);
+        percolation.open(2, 1);
+    }
+
+    @Test
+    public void isFullTest() {
+        Percolation percolation = new Percolation(3);
+        percolation.open(1, 1);
+        percolation.open(2, 1);
+        Truth.assertThat(percolation.isFull(0, 1)).isFalse();
+        Truth.assertThat(percolation.isFull(1, 1)).isFalse();
+        Truth.assertThat(percolation.isFull(2, 1)).isFalse();
+
+        percolation.open(0, 1);
+        Truth.assertThat(percolation.isFull(0, 1)).isTrue();
+        Truth.assertThat(percolation.isFull(1, 1)).isTrue();
+        Truth.assertThat(percolation.isFull(2, 1)).isTrue();
+
+        percolation.open(2, 2);
+        Truth.assertThat(percolation.isFull(2, 2)).isTrue();
+    }
+
+    @Test
+    public void numberOfOpenSitesTest() {
+        Percolation percolation = new Percolation(3);
+        Truth.assertThat(percolation.numberOfOpenSites()).isEqualTo(0);
+
+        percolation.open(0, 0);
+        Truth.assertThat(percolation.numberOfOpenSites()).isEqualTo(1);
+
+        percolation.open(1, 1);
+        Truth.assertThat(percolation.numberOfOpenSites()).isEqualTo(2);
+    }
+
+    @Test
+    public void percolatesTest() {
+        Percolation percolation = new Percolation(3);
+        Truth.assertThat(percolation.percolates()).isFalse();
+
+        percolation.open(1,1);
+        percolation.open(0,1);
+        Truth.assertThat(percolation.percolates()).isFalse();
+
+        percolation.open(0,0);
+        percolation.open(0,2);
+        percolation.open(1,0);
+        percolation.open(1,2);
+        Truth.assertThat(percolation.percolates()).isFalse();
+
+        percolation.open(2,0);
+        Truth.assertThat(percolation.percolates()).isTrue();
+
+        percolation.open(2,1);
+        Truth.assertThat(percolation.percolates()).isTrue();
+
+        percolation.open(2,2);
+        Truth.assertThat(percolation.percolates()).isTrue();
+    }
 }
