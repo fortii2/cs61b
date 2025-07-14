@@ -1,6 +1,9 @@
 import java.util.HashMap;
 import java.util.TreeMap;
 import java.util.Scanner;
+
+import bstmap.BSTMap;
+import bstmap.Map61B;
 import edu.princeton.cs.algs4.Stopwatch;
 
 /** Performs a timing test on three different set implementations.
@@ -38,7 +41,7 @@ public class InsertRandomSpeedTest {
     }
 
     /** Returns time needed to put N random strings of length L into the
-     * Map61B 61bMap. */
+     * bstmap.Map61B 61bMap. */
     public static double insertRandom(Map61B<String, Integer> map61B, int N, int L) {
         Stopwatch sw = new Stopwatch();
         String s;
