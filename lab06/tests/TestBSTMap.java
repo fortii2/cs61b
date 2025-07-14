@@ -1,6 +1,5 @@
 import static org.junit.Assert.*;
 
-import bstmap.BSTMap;
 import org.junit.Test;
 
 import static com.google.common.truth.Truth.assertThat;

@@ -1,9 +1,7 @@
-package bstmap;
-
 import java.util.Set;
 
-/* Your implementation bstmap.BSTMap should implement this interface. To do so,
- * append "implements bstmap.Map61B<K, V>" to the end of your "public class..."
+/* Your implementation BSTMap should implement this interface. To do so,
+ * append "implements Map61B<K, V>" to the end of your "public class..."
  * declaration, though you can and should use other type parameters when
  * necessary.
  */

@@ -1,7 +1,6 @@
 import java.util.Set;
 import java.util.TreeSet;
 
-import bstmap.BSTMap;
 import org.junit.Test;
 
 import static com.google.common.truth.Truth.assertThat;

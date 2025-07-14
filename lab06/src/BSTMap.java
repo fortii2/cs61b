@@ -1,5 +1,3 @@
-package bstmap;
-
 import edu.princeton.cs.algs4.Stack;
 
 import java.util.HashSet;
