@@ -1,4 +1,5 @@
 import static org.junit.Assert.*;
+
 import org.junit.Test;
 
 import static com.google.common.truth.Truth.assertThat;
@@ -16,6 +17,19 @@ public class TestBSTMap {
         } catch (Exception e) {
             fail();
         }
+    }
+
+    @Test
+    public void sizeTest() {
+        BSTMap<String, String> a = new BSTMap<>();
+        assertThat(a.size()).isEqualTo(0);
+
+        a.put("a","1");
+        a.put("a","2");
+        assertThat(a.size()).isEqualTo(1);
+
+        a.put("b","3");
+        assertThat(a.size()).isEqualTo(2);
     }
 
     // This test assumes put/size/containsKey/get are implemented properly.

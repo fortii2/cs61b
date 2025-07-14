@@ -5,7 +5,9 @@ import org.junit.Test;
 
 import static com.google.common.truth.Truth.assertThat;
 
-/** Tests of optional parts of lab 6. */
+/**
+ * Tests of optional parts of lab 6.
+ */
 public class TestBSTMapExtra {
 
     /*
@@ -60,12 +62,12 @@ public class TestBSTMapExtra {
      */
     @Test
     public void testRemoveThreeCases() {
-        BSTMap<String,String> q = new BSTMap<>();
-        q.put("c","a");
-        q.put("b","a");
-        q.put("a","a");
-        q.put("d","a");
-        q.put("e","a");                         // a b c d e
+        BSTMap<String, String> q = new BSTMap<>();
+        q.put("c", "a");
+        q.put("b", "a");
+        q.put("a", "a");
+        q.put("d", "a");
+        q.put("e", "a");                         // a b c d e
         assertThat(q.remove("e")).isNotNull();      // a b c d
         assertThat(q.containsKey("a")).isTrue();
         assertThat(q.containsKey("b")).isTrue();
@@ -75,7 +77,7 @@ public class TestBSTMapExtra {
         assertThat(q.containsKey("a")).isTrue();
         assertThat(q.containsKey("b")).isTrue();
         assertThat(q.containsKey("d")).isTrue();
-        q.put("f","a");                         // a b d f
+        q.put("f", "a");                         // a b d f
         assertThat(q.remove("d")).isNotNull();      // a b f
         assertThat(q.containsKey("a")).isTrue();
         assertThat(q.containsKey("b")).isTrue();
@@ -114,4 +116,23 @@ public class TestBSTMapExtra {
         assertThat(noChild.get('Z')).isNull();
     }
 
+    @Test
+    public void keySetTest() {
+        BSTMap<String, Integer> bst = new BSTMap<>();
+        assertThat(bst.size()).isEqualTo(0);
+
+        bst.put("a", 1);
+        assertThat(bst.size()).isEqualTo(1);
+        assertThat(bst.get("a")).isEqualTo(1);
+
+        bst.put("a", 2);
+        assertThat(bst.size()).isEqualTo(1);
+        assertThat(bst.get("a")).isEqualTo(2);
+
+        bst.put("b", 2);
+        bst.put("c", 3);
+        bst.put("z", 4);
+        bst.put("h", 5);
+        assertThat(bst.keySet()).containsExactly("a", "b", "c", "h", "z").inOrder();
+    }
 }
